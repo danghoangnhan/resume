@@ -8,6 +8,10 @@
 % QR code: generate at https://www.the-qrcode-generator.com/ and convert the
 % exported SVG to PDF at https://cloudconvert.com/svg-to-pdf.
 \begin{tabular*}{\textwidth}{lc@{\extracolsep{\fill}}r}
+% The bare \\ below is a zero-height spacer row, not a full line -- putting
+% text in it, or adding a fourth row here, makes this block genuinely taller
+% and drops the extra content below the contact column. The ORCID therefore
+% lives in the contact block on the right, with the other identifiers.
 \begin{tabular}{l}
 \textbf{\huge \textcolor{titleblue}{Daniel Tu}} \\
 \\
@@ -16,12 +20,14 @@ AI Engineer, Software Engineer
 &
 &
 % \tabcolsep is 0pt document-wide, so the gap before the QR column is
-% explicit. \multirow spans all four contact rows, which both centres the
-% code against them and clears the overfull \vbox it caused at three.
+% explicit. \multirow spans every contact row, which both centres the code
+% against them and clears the overfull \vbox it caused when it spanned
+% fewer -- it went 19.6pt at three rows, 7.6pt at four, and none at five.
 \begin{tabular}{@{}r@{\hspace{9pt}}r@{}}
-\textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} Jingde Rd, Xinzhuang District, New Taipei City, Taiwan 242 & \multirow{4}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
+\textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} Jingde Rd, Xinzhuang District, New Taipei City, Taiwan 242 & \multirow{5}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
 \includegraphics[width=0.017\linewidth]{imgs/email.pdf} danghoangnhan.1@gmail.com & \\
 \includegraphics[width=0.017\linewidth]{imgs/home.pdf} \href{https://danghoangnhan.github.io}{danghoangnhan.github.io} & \\
-\includegraphics[width=0.017\linewidth]{imgs/phone.pdf} +886 906-276-967 &
+\includegraphics[width=0.017\linewidth]{imgs/phone.pdf} +886 906-276-967 & \\
+\href{https://orcid.org/0009-0005-8703-9956}{ORCID: 0009-0005-8703-9956} &
 \end{tabular} \\
 \end{tabular*}
