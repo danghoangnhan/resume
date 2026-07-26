@@ -9,10 +9,10 @@
       \item Oriented Object Detection: Applied \textbf{YOLOv11-OBB} to perform \textbf{Oriented bounding boxes Object Detection} for accurately capturing the orientation of aircraft, ships, and vehicles.
       \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images for parallel inference, significantly boosting the recall rate for small targets. Leveraged a Super-Resolution Model to enhance image detail, improving subsequent detection and annotation quality.
       \item GPU Performance Optimization: Utilized \textbf{TensorRT} for FP16 quantization and layer fusion to achieve stable, low-latency inference.
-      \item AI Serving \& Deployment: Deployed models on NVIDIA Triton Inference Server, integrating with a FastAPI backend via gRPC/API. Applied \textbf{Distributed Data Parallel (DDP)} across multiple GPUs to ensure efficient execution of large-scale inference tasks.
+      \item AI Serving \& Deployment (Kubeflow Ecosystem): Served models as \textbf{KServe} InferenceServices on Kubernetes with an NVIDIA Triton runtime, fronted by a FastAPI/gRPC gateway; versioned and promoted checkpoints through the \textbf{Kubeflow Model Registry}, and orchestrated training-to-deployment runs as \textbf{Kubeflow Pipelines}. Applied \textbf{Distributed Data Parallel (DDP)} across multiple GPUs to ensure efficient execution of large-scale inference tasks.
       \item Experiment Management: Used \textbf{MLflow} to track model versions, hyperparameters, and performance metrics
-      \item Parallel Processing: Automated data workflows using \textbf{Apache Airflow}, employing dynamic task slicing to process large aerial images in parallel (Pansharpening, COG generation, PostGIS Raster writing, GeoServer publishing).
-      \item Resource Management: Integrated GDAL to build partition indexes at each stage and used Airflow's resource-aware scheduling to optimize CPU I/O allocation.
+      \item Parallel Processing: Automated data workflows with \textbf{Pathway}'s incremental streaming engine, sharding large aerial images across parallel workers (Pansharpening, COG generation, PostGIS Raster writing, GeoServer publishing).
+      \item Resource Management: Integrated GDAL to build partition indexes at each stage and relied on Pathway's backpressure-aware scheduler to optimize CPU/IO allocation.
     \resumeNestedListEnd
   }
 \resumeItemListEnd
