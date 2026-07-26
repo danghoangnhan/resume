@@ -6,11 +6,11 @@
 \resumeItemListStart
   \resumeItem{Project: Satellite Imagery AI Automatic Identification System}{
     \resumeNestedListStart
-      \item Oriented Object Detection: Applied \textbf{YOLOv11-OBB} to perform \textbf{Oriented bounding boxes Object Detection} for accurately capturing the orientation of aircraft, ships, and vehicles.
-      \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images and fan the tiles across \textbf{KServe} replicas, significantly boosting the recall rate for small targets. Leveraged a Super-Resolution Model to enhance image detail, improving subsequent detection and annotation quality.
-      \item GPU Performance Optimization: Utilized \textbf{TensorRT} for FP16 quantization and layer fusion to achieve stable, low-latency inference.
+      \item Oriented Object Detection: Applied \textbf{YOLOv11-OBB} to perform \textbf{oriented bounding box detection}, capturing the heading of aircraft, ships, and vehicles.
+      \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images and fan the tiles across \textbf{KServe} replicas, lifting small-target recall from [X]\% to [Y]\%. Added a Super-Resolution stage ahead of detection to improve subsequent detection and annotation quality.
+      \item GPU Performance Optimization: Compiled \textbf{TensorRT} engines with FP16 quantization and layer fusion, cutting inference to [X] ms/image ([N]x versus FP32).
       \item AI Serving \& Deployment (Kubeflow Ecosystem): Ran multi-GPU distributed training with \textbf{Kubeflow Trainer} (PyTorchJob, \textbf{Distributed Data Parallel}), promoted checkpoints through the \textbf{Kubeflow Model Registry}, and orchestrated train-to-deploy as \textbf{Kubeflow Pipelines}. Served models as \textbf{KServe} InferenceServices on NVIDIA Triton behind an nginx ingress with \textbf{Envoy} as the Knative data plane, autoscaled on concurrency with scale-to-zero to release idle GPUs.
-      \item Experiment Management: Used \textbf{MLflow} to track model versions, hyperparameters, and performance metrics
+      \item Experiment Management: Used \textbf{MLflow} to track model versions, hyperparameters, and performance metrics.
       \item Parallel Processing: Automated data workflows with \textbf{Pathway}'s incremental streaming engine, sharding large aerial images across parallel workers (Pansharpening, COG generation, PostGIS Raster writing, GeoServer publishing).
       \item Resource Management: Integrated GDAL to build partition indexes at each stage and relied on Pathway's backpressure-aware scheduler to optimize CPU/IO allocation.
     \resumeNestedListEnd
@@ -18,7 +18,7 @@
 
   \resumeItem{Platform: On-Premise Camera Edge Inference Appliance}{
     \resumeNestedListStart
-      \item Edge Runtime: Built a reusable on-premise inference appliance on \textbf{NVIDIA Jetson Orin Nano}, running live camera feeds through whichever vision model a deployment calls for, entirely on device.
+      \item Edge Runtime: Built a reusable on-premise inference appliance on \textbf{NVIDIA Jetson Orin Nano}, running [N] live camera feeds at [X] FPS through whichever vision model a deployment calls for, entirely on device.
       \item Device-Side Optimization: Exported models through \textbf{ONNX} with dynamic input shapes and compiled \textbf{TensorRT} engines on the target board using FP16 precision and layer fusion, sized to the Orin's unified memory budget.
       \item Monocular Depth Estimation: Benchmarked \textbf{MiDaS} against \textbf{Depth Anything V2} for depth quality and on-device latency, and shipped \textbf{Depth Anything V2} as the depth backbone behind a common runtime interface.
       \item Model Delivery: Promoted checkpoints from the \textbf{Kubeflow Model Registry} into versioned per-device TensorRT engines, so one trained artifact serves both \textbf{KServe} in-cluster and the edge fleet.
@@ -35,7 +35,7 @@
 \resumeItemListEnd
 
 \resumeSubheading
-  {FUBON LIFE INSURANCE CO., LTD.}{Neihu District, Taipei City, Taiwan}
+  {Fubon Life Insurance Co., Ltd.}{Neihu District, Taipei City, Taiwan}
   {Data Scientist Intern}{Mar 2024 - Sep 2024}
 \resumeItemListStart
   \resumeItem{Project: Insurance AI}{
@@ -43,28 +43,28 @@
       \item Image Preprocessing: Enhanced document clarity with \textbf{OpenCV} and applied \textbf{Non-Maximum Suppression (NMS)} to mitigate stamp occlusion, improving downstream text detection accuracy.
       \item \textbf{OCR Engine Development:}
         \resumeNestedListStart
-          \item \textbf{Text Detection:} Deployed and fine-tuned models from the \textbf{ICDAR benchmark (DBNET, EAST)} for robust text localization. Systematically evaluated model performance against benchmarks using \textbf{Recall, Precision, and F1-score}.
-          \item \textbf{Text Recognition:} Integrated \textbf{CRNN, SVTR, and TROCR} models for high-accuracy character transcription, leveraging open data from \textbf{ESUN.AI}. Validated model performance using \textbf{Character Error Rate (CER)}.
-          \item \textbf{Data Augmentation:} Utilized \textbf{Text Renderer} (an OCR generator tool) to programmatically generate a large-scale synthetic training dataset, enhancing model generalization and robustness against varied document fonts and formats.
+          \item \textbf{Text Detection:} Deployed and fine-tuned models from the \textbf{ICDAR benchmark (DBNET, EAST)} for text localization, evaluated against benchmarks on \textbf{Recall, Precision, and F1-score}.
+          \item \textbf{Text Recognition:} Integrated \textbf{CRNN, SVTR, and TROCR} models for character transcription, leveraging open data from \textbf{ESUN.AI}. Validated model performance using \textbf{Character Error Rate (CER)}.
+          \item \textbf{Data Augmentation:} Used \textbf{Text Renderer} (an OCR generator tool) to programmatically generate a large-scale synthetic training dataset, improving generalization across varied document fonts and formats.
         \resumeNestedListEnd
-      \item Designed microservices deployed on Kubernetes, Using Grafana for model performance metrics and Kibana for log analysis
+      \item Designed microservices on Kubernetes, with Grafana for model performance metrics and Kibana for log analysis.
       \item \textbf{Natural Language Processing (NLP) \& Document Intelligence:}
         \resumeNestedListStart
           \item Enhanced the LLM's OCR capabilities by integrating \textbf{layout-aware embedding} techniques with \textbf{LayoutXLM}.
           \item Applied the \textbf{TAIDE} encoder for Traditional Chinese, cutting character segmentation errors by 45\%; fine-tuned \textbf{Llama 2.0} for entity extraction with \textbf{DPO} and \textbf{LoRA} (\textbf{PEFT}), reaching 3x faster inference at 92\% accuracy.
-          \item Optimized and deployed the fine-tuned model for efficient inference using \textbf{Llama.cpp}.
+          \item Optimized and deployed the fine-tuned model for inference using \textbf{llama.cpp}.
         \resumeNestedListEnd
     \resumeNestedListEnd
   }
 \resumeItemListEnd
 
 \resumeSubheading
-  {Knowledge Engineering Lab, Fu Jen Catholic University}{New Taipei city, Taiwan}
-  {Research Assistant, Supervisor: \textbf{Hsu Jia-Lien}}{Jul 2022 - Sep 2024}
+  {Knowledge Engineering Lab, Fu Jen Catholic University}{New Taipei City, Taiwan}
+  {Research Assistant, Supervisor: \textbf{Jia-Lien Hsu}}{Jul 2022 - Sep 2024}
 \resumeItemListStart
   \resumeItem{Form Understanding Project Certificate of Diagnosis}{Architected end-to-end medical document analysis system on ALTOS AI workstation using Kubernetes orchestration.
-  Integrated OCR algorithms and document understanding models in containerized microservices architecture. Earned project scholarship award for innovative system design with FUBON LIFE INSURANCE
-  (\href{https://www.fju.edu.tw/focusDetail.jsp?focusID=2285&focusClassID=3&fbclid=IwAR1U61iocx-gGDaxGOqLT-qEkD5vceZsGNmUt_Yr5AQPWskePqsnKosxVh0}{\textcolor{linkblue}{link}})}
+  Integrated OCR algorithms and document understanding models in containerized microservices architecture. Earned project scholarship award for innovative system design with Fubon Life Insurance
+  (\resumeLink{https://www.fju.edu.tw/focusDetail.jsp?focusID=2285&focusClassID=3}{link})}
 \resumeItemListEnd
 
 \resumeSubheading
@@ -74,14 +74,14 @@
 
   \resumeItem{Project: Fleet Management System}{
     \resumeNestedListStart
-      \item Leveraged Apache Kafka to develop a high-throughput event-driven platform for real-time data feeds of 10,000+ devices.
-      \item Utilized Java Socket.IO for efficient bi-directional communication between server and devices.
+      \item Built a high-throughput event-driven platform on Apache Kafka for real-time data feeds of 10,000+ devices.
+      \item Used Java Socket.IO for bi-directional communication between server and devices.
       \item Optimized large-scale insert paths to 10,000 inserts/sec, a 5x improvement, across SQL and NoSQL stores.
     \resumeNestedListEnd
   }
 
-  \resumeItem{Project: Qualification License Management}{
-    Developed a Quality License Management system with automated alerts for expiring licenses, integrated with the company's built-in ERP system.
+  \resumeItem{Project: Quality License Management}{
+    Developed a Quality License Management (QLM) system with automated alerts for expiring licenses, integrated with the company's built-in ERP system.
   }
 
 \resumeItemListEnd

@@ -1,6 +1,21 @@
+% ACTION REQUIRED -- the TensorFlow entry is deliberately unlinked.
+%
+% It previously pointed at a camo.githubusercontent.com URL. Camo is GitHub's
+% signed image proxy, only valid inside the README it was generated for; the
+% link returned HTTP 403 for every reader of this resume. Its hex payload
+% decoded to
+%   https://api.accredible.com/v1/frontend/.../certificate/84196603
+% which is an image endpoint -- even alive it renders a badge with no holder
+% name, issue date or revocation status, so it proves nothing to a verifier.
+%
+% Replace with the public share URL for credential 84196603 from your Accredible
+% dashboard or issuance email, then wrap it in \resumeLink. An unlinked title is
+% better than a dead link, but a working verification URL is better than both.
+% Note the certificate lapses three years after issue -- consider adding the
+% issue month/year to both entries so a reader can tell whether it is current.
 \resumeSubHeadingListStart
   \small
-  \item \href{https://camo.githubusercontent.com/6e76155581f50a3496bfdcab2008cdc3902839d189be6c39fc8412f69833d577/68747470733a2f2f6170692e61636372656469626c652e636f6d2f76312f66726f6e74656e642f63726564656e7469616c5f776562736974655f656d6265645f696d6167652f63657274696669636174652f3834313936363033}{\textcolor{linkblue}{TensorFlow Developer Certificate}}, Google
+  \item TensorFlow Developer Certificate, Google
   \vspace{-8pt}
-  \item \href{https://www.coursera.org/account/accomplishments/specialization/TNVAQWY9TTTA?}{\textcolor{linkblue}{Deep Learning Specialization}}, DeepLearning.AI
+  \item \resumeLink{https://www.coursera.org/account/accomplishments/specialization/TNVAQWY9TTTA}{Deep Learning Specialization}, DeepLearning.AI
 \resumeSubHeadingListEnd

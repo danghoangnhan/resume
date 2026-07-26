@@ -33,9 +33,17 @@
 \addtolength{\textheight}{1.0in}
 
 % --- Colours ------------------------------------------------------------------
-\definecolor{linkblue}{RGB}{111, 153, 222}
+% linkblue was RGB(111,153,222), which measures 2.88:1 against white and fails
+% the WCAG AA 4.5:1 threshold -- a problem when a whole certificate title is the
+% anchor. This value measures 6.93:1. titleblue is 4.90:1 and is left alone.
+\definecolor{linkblue}{RGB}{31, 90, 160}
 \definecolor{titleblue}{RGB}{46, 116, 181}
 \urlstyle{same}
+
+% hyperref is loaded with [hidelinks], so a bare \href prints in body black.
+% Every link in this document must go through \resumeLink -- otherwise it is
+% invisible as a link, which is what happened to the header's site and ORCID.
+\newcommand{\resumeLink}[2]{\href{#1}{\textcolor{linkblue}{#2}}}
 
 \raggedbottom
 \raggedright

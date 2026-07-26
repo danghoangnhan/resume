@@ -1,9 +1,9 @@
 \resumeSubHeadingListStart
-  \resumeSubItem{Pathway --- Real-Time Data Framework (\href{https://github.com/pathwaycom/pathway}{\textcolor{linkblue}{github}})}{
-    Contributed two \textbf{merged} native connectors to \href{https://pathway.com}{\textcolor{linkblue}{Pathway}}, an open-source Python/Rust streaming-data framework.
+  \resumeSubItem{Pathway --- Real-Time Data Framework (\resumeLink{https://github.com/pathwaycom/pathway}{github})}{
+    Authored two \textbf{merged} native connectors to \resumeLink{https://pathway.com}{Pathway}, an open-source Python/Rust streaming-data framework.
     \resumeNestedListStart
-      \item \textbf{Microsoft SQL Server connector} (\texttt{pw.io.mssql}): pure-Rust TDS implementation via \texttt{tiberius} (no ODBC drivers); static-polling and Change Data Capture (CDC) streaming reads, snapshot / change-stream writes, and full SQL Server type mapping (\href{https://github.com/pathwaycom/pathway/pull/205}{\textcolor{linkblue}{PR \#205}}).
-      \item \textbf{RabbitMQ Streams connector} (\texttt{pw.io.rabbitmq}): native read/write on \texttt{rabbitmq-stream-client} with TLS, AMQP 1.0 message keys, and parallel readers; shipped an end-to-end RabbitMQ $\rightarrow$ Pathway $\rightarrow$ PostgreSQL ETL example (\href{https://github.com/pathwaycom/pathway/pull/207}{\textcolor{linkblue}{PR \#207}}).
+      \item \textbf{Microsoft SQL Server connector} (\texttt{pw.io.mssql}): pure-Rust TDS implementation via \texttt{tiberius} (no ODBC drivers); static-polling and Change Data Capture (CDC) streaming reads, snapshot / change-stream writes, and full SQL Server type mapping (\resumeLink{https://github.com/pathwaycom/pathway/pull/205}{PR \#205}).
+      \item \textbf{RabbitMQ Streams connector} (\texttt{pw.io.rabbitmq}): native read/write on \texttt{rabbitmq-stream-client} with TLS, AMQP 1.0 message keys, and parallel readers; shipped an end-to-end RabbitMQ $\rightarrow$ Pathway $\rightarrow$ PostgreSQL ETL example (\resumeLink{https://github.com/pathwaycom/pathway/pull/207}{PR \#207}).
       \item Authored Python $\leftrightarrow$ Rust bindings (\textbf{PyO3}); the MSSQL connector now underpins further community contributions.
     \resumeNestedListEnd
   }

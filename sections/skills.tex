@@ -1,19 +1,33 @@
+% One \item per category, no \hfill two-column trick.
+%
+% The old layout faked two columns by pushing a second label right with \hfill.
+% Under the document-wide \raggedright (resumestyle.sty) that never actually
+% aligned -- the two right-hand labels landed 19 columns apart -- and a plain
+% pdftotext extraction split them onto unlabelled orphan lines, so an ATS filed
+% the Database list under "Security". One category per row costs two lines and
+% extracts correctly.
+%
+% Rows are ordered so the specialism leads. Every tool named here is evidenced
+% in sections/experience.tex, sections/projects.tex or sections/opensource.tex.
 \resumeSubHeadingListStart
-  \small{
-  \item{\textbf{Programming Language}{: Python, C++, Java, Golang, Rust}
-  \hfill
-  \textbf{Backend}{: FastAPI, gRPC-Gateway, Spring}}
+  \small
+  \item{\textbf{Deep Learning}{: PyTorch, TensorFlow, PaddlePaddle, ONNX, OpenCV, LoRA/PEFT, DPO}}
   \vspace{-8pt}
-  \item{\textbf{Devops}{: Docker, GitLab CI/Runner, Kubernetes, Helm, kubectl, nginx, Envoy, GCP}}
+  \item{\textbf{Inference/Edge}{: TensorRT, CUDA, NVIDIA Triton, NVIDIA Jetson, llama.cpp}}
   \vspace{-8pt}
-  \item{\textbf{Security}{: Harbor, Trivy, OWASP ZAP, Dependency-Track}
-  \hfill
-  \textbf{Database}{: PostgreSQL, MongoDB, Redis, Kafka, RabbitMQ}}
+  \item{\textbf{MLOps}{: Kubeflow Pipelines, Kubeflow Trainer, KServe, Model Registry, MLflow, Knative}}
   \vspace{-8pt}
-  \item{\textbf{MLOps}{: Kubeflow Pipelines, Kubeflow Trainer, KServe, Model Registry}}
+  \item{\textbf{Programming Language}{: Python, C++, Java, Go, Rust}}
   \vspace{-8pt}
-  \item{\textbf{Architect/Technique}{: SOLID Design Principles, Dependency Injection, Event-driven, Software design pattern, Multithreaded Programming}}
+  \item{\textbf{Backend}{: FastAPI, gRPC-Gateway, Spring}}
   \vspace{-8pt}
-  \item{\textbf{Deep Learning}{: CUDA, TensorRT, ONNX, NVIDIA Jetson, PyTorch, PaddlePaddle, TensorFlow}}
-  }
+  % GCP is retained pending your call: every environment described in
+  % experience.tex is on-premise, so nothing in this document evidences it.
+  \item{\textbf{DevOps}{: Docker, Kubernetes, Helm, kubectl, GitLab CI/Runner, nginx, Envoy, GCP}}
+  \vspace{-8pt}
+  \item{\textbf{Security}{: Trivy, OWASP ZAP, Dependency-Track, Harbor, CycloneDX}}
+  \vspace{-8pt}
+  \item{\textbf{Data/Messaging}{: PostgreSQL, MongoDB, Redis, Kafka, RabbitMQ, Pathway, GDAL/PostGIS, GeoServer}}
+  \vspace{-8pt}
+  \item{\textbf{Architecture}{: SOLID, Dependency Injection, Event-Driven Architecture, Design Patterns, Multithreaded Programming}}
 \resumeSubHeadingListEnd
