@@ -1,0 +1,17 @@
+# Build output — published by CI, never committed
+resume.pdf
+site/
+
+# LaTeX by-products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.xdv
