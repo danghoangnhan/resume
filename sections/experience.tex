@@ -7,12 +7,20 @@
   \resumeItem{Project: Satellite Imagery AI Automatic Identification System}{
     \resumeNestedListStart
       \item Oriented Object Detection: Applied \textbf{YOLOv11-OBB} to perform \textbf{Oriented bounding boxes Object Detection} for accurately capturing the orientation of aircraft, ships, and vehicles.
-      \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images for parallel inference, significantly boosting the recall rate for small targets. Leveraged a Super-Resolution Model to enhance image detail, improving subsequent detection and annotation quality.
+      \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images and fan the tiles across \textbf{KServe} replicas, significantly boosting the recall rate for small targets. Leveraged a Super-Resolution Model to enhance image detail, improving subsequent detection and annotation quality.
       \item GPU Performance Optimization: Utilized \textbf{TensorRT} for FP16 quantization and layer fusion to achieve stable, low-latency inference.
-      \item AI Serving \& Deployment (Kubeflow Ecosystem): Ran multi-GPU distributed training with \textbf{Kubeflow Trainer} (PyTorchJob, \textbf{Distributed Data Parallel}), versioned and promoted checkpoints through the \textbf{Kubeflow Model Registry}, and orchestrated the train-to-deploy path as \textbf{Kubeflow Pipelines}. Served models as \textbf{KServe} InferenceServices with an NVIDIA Triton runtime behind a FastAPI/gRPC gateway, scaled by Knative concurrency autoscaling with scale-to-zero to release idle GPUs.
+      \item AI Serving \& Deployment (Kubeflow Ecosystem): Ran multi-GPU distributed training with \textbf{Kubeflow Trainer} (PyTorchJob, \textbf{Distributed Data Parallel}), promoted checkpoints through the \textbf{Kubeflow Model Registry}, and orchestrated train-to-deploy as \textbf{Kubeflow Pipelines}. Served models as \textbf{KServe} InferenceServices on NVIDIA Triton behind an nginx ingress with \textbf{Envoy} as the Knative data plane, autoscaled on concurrency with scale-to-zero to release idle GPUs.
       \item Experiment Management: Used \textbf{MLflow} to track model versions, hyperparameters, and performance metrics
       \item Parallel Processing: Automated data workflows with \textbf{Pathway}'s incremental streaming engine, sharding large aerial images across parallel workers (Pansharpening, COG generation, PostGIS Raster writing, GeoServer publishing).
       \item Resource Management: Integrated GDAL to build partition indexes at each stage and relied on Pathway's backpressure-aware scheduler to optimize CPU/IO allocation.
+    \resumeNestedListEnd
+  }
+
+  \resumeItem{Platform: Secure CI/CD Delivery (DevSecOps)}{
+    \resumeNestedListStart
+      \item Delivery Pipeline: Built Docker images on self-hosted \textbf{GitLab} Runners, pushed them to \textbf{Harbor}, and released to Kubernetes as \textbf{Helm} umbrella charts versioning the full stack as one release.
+      \item Security Gates: \textbf{Trivy} scanned on push and Harbor's prevent-vulnerable-images-from-running policy blocked flagged tags from Kubernetes; \textbf{OWASP ZAP} ran DAST across the FastAPI/gRPC gateway and \textbf{CycloneDX} SBOMs fed \textbf{Dependency-Track}.
+      \item Team Visibility: Tracked \textbf{GitLab CI/CD} builds, scans, DAST, CVEs, and Harbor pulls in Microsoft Teams.
     \resumeNestedListEnd
   }
 \resumeItemListEnd
@@ -23,7 +31,7 @@
 \resumeItemListStart
   \resumeItem{Project: Insurance AI}{
     \resumeNestedListStart
-      \item Image Preprocessing: Implemented advanced image processing algorithms with \textbf{OpenCV} to enhance document clarity. Developed and applied a \textbf{Non-Maximum Suppression (NMS)} algorithm to specifically mitigate text occlusion from document stamps, significantly improving the accuracy of downstream text detection models.
+      \item Image Preprocessing: Enhanced document clarity with \textbf{OpenCV} and applied \textbf{Non-Maximum Suppression (NMS)} to mitigate stamp occlusion, improving downstream text detection accuracy.
       \item \textbf{OCR Engine Development:}
         \resumeNestedListStart
           \item \textbf{Text Detection:} Deployed and fine-tuned models from the \textbf{ICDAR benchmark (DBNET, EAST)} for robust text localization. Systematically evaluated model performance against benchmarks using \textbf{Recall, Precision, and F1-score}.
@@ -34,8 +42,7 @@
       \item \textbf{Natural Language Processing (NLP) \& Document Intelligence:}
         \resumeNestedListStart
           \item Enhanced the LLM's OCR capabilities by integrating \textbf{layout-aware embedding} techniques with \textbf{LayoutXLM}.
-          \item Applied TAIDE encoder model for Traditional Chinese text encoding, reducing character segmentation errors by 45\%, Optimized model performance through DPO and LoRA, achieving 3x faster inference while maintaining 92\% accuracy
-          \item Fine-tuned a \textbf{Llama 2.0} model for semantic recognition and entity extraction using advanced techniques including \textbf{Direct Preference Optimization (DPO)} and \textbf{Low-Rank Adaptation (LoRA)} from the \textbf{PEFT} library.
+          \item Applied the \textbf{TAIDE} encoder for Traditional Chinese, cutting character segmentation errors by 45\%; fine-tuned \textbf{Llama 2.0} for entity extraction with \textbf{DPO} and \textbf{LoRA} (\textbf{PEFT}), reaching 3x faster inference at 92\% accuracy.
           \item Optimized and deployed the fine-tuned model for efficient inference using \textbf{Llama.cpp}.
         \resumeNestedListEnd
     \resumeNestedListEnd
@@ -59,18 +66,13 @@
   \resumeItem{Project: Fleet Management System}{
     \resumeNestedListStart
       \item Leveraged Apache Kafka to develop a high-throughput event-driven platform for real-time data feeds of 10,000+ devices.
-      \item Decoupled, scalable microservices for improved system flexibility and maintainability
       \item Utilized Java Socket.IO for efficient bi-directional communication between server and devices.
-      \item Optimized database queries for handling large-scale inserts, achieving a 5x improvement in insert speeds, handling up to 10,000 inserts per second. Utilized SQL and NoSQL databases to efficiently handle different types of data
+      \item Optimized large-scale insert paths to 10,000 inserts/sec, a 5x improvement, across SQL and NoSQL stores.
     \resumeNestedListEnd
   }
 
-  \resumeItem{Project: CRM System}{
-    Enhanced user interfaces and workflows tailored to company needs.
-  }
-
   \resumeItem{Project: Qualification License Management}{
-    Developed a Quality License Management system with automated alerts for expiring licenses, integrated with the company's built-in CRM system.
+    Developed a Quality License Management system with automated alerts for expiring licenses, integrated with the company's built-in ERP system.
   }
 
 \resumeItemListEnd
