@@ -16,6 +16,15 @@
     \resumeNestedListEnd
   }
 
+  \resumeItem{Platform: On-Premise Camera Edge Inference Appliance}{
+    \resumeNestedListStart
+      \item Edge Runtime: Built a reusable on-premise inference appliance on \textbf{NVIDIA Jetson Orin Nano}, running live camera feeds through whichever vision model a deployment calls for, entirely on device.
+      \item Device-Side Optimization: Exported models through \textbf{ONNX} with dynamic input shapes and compiled \textbf{TensorRT} engines on the target board using FP16 precision and layer fusion, sized to the Orin's unified memory budget.
+      \item Monocular Depth Estimation: Benchmarked \textbf{MiDaS} against \textbf{Depth Anything V2} for depth quality and on-device latency, and shipped \textbf{Depth Anything V2} as the depth backbone behind a common runtime interface.
+      \item Model Delivery: Promoted checkpoints from the \textbf{Kubeflow Model Registry} into versioned per-device TensorRT engines, so one trained artifact serves both \textbf{KServe} in-cluster and the edge fleet.
+    \resumeNestedListEnd
+  }
+
   \resumeItem{Platform: Secure CI/CD Delivery (DevSecOps)}{
     \resumeNestedListStart
       \item Delivery Pipeline: Built Docker images on self-hosted \textbf{GitLab} Runners, pushed them to \textbf{Harbor}, and released to Kubernetes as \textbf{Helm} umbrella charts versioning the full stack as one release.
