@@ -1,0 +1,78 @@
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {ThinkTron Ltd.}{Siyuan St, Zhongzheng District, Taipei City, Taiwan}
+  {AI Software Engineer}{May 2025 - Present}
+\resumeItemListStart
+  \resumeItem{Project: Satellite Imagery AI Automatic Identification System}{
+    \resumeNestedListStart
+      \item Oriented Object Detection: Applied \textbf{YOLOv11-OBB} to perform \textbf{Oriented bounding boxes Object Detection} for accurately capturing the orientation of aircraft, ships, and vehicles.
+      \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images for parallel inference, significantly boosting the recall rate for small targets. Leveraged a Super-Resolution Model to enhance image detail, improving subsequent detection and annotation quality.
+      \item GPU Performance Optimization: Utilized \textbf{TensorRT} for FP16 quantization and layer fusion to achieve stable, low-latency inference.
+      \item AI Serving \& Deployment: Deployed models on NVIDIA Triton Inference Server, integrating with a FastAPI backend via gRPC/API. Applied \textbf{ Distributed Data Parallel (DDP)} across multiple GPUs to ensure efficient execution of large-scale inference tasks.
+      \item Experiment Management: Used \textbf{MLflow} to track model versions, hyperparameters, and performance metrics
+      \item Parallel Processing: Automated data workflows using \textbf{Apache Airflow}, employing dynamic task slicing to process large aerial images in parallel (Pansharpening, COG generation, PostGIS Raster writing, GeoServer publishing).
+      \item Resource Management: Integrated GDAL to build partition indexes at each stage and used Airflow's resource-aware scheduling to optimize CPU I/O allocation.
+    \resumeNestedListEnd
+  }
+\resumeItemListEnd
+
+\resumeSubheading
+  {FUBON LIFE INSURANCE CO., LTD.}{Neihu District, Taipei City, Taiwan}
+  {Data Scientist Intern}{Mar 2024 - Sep 2024}
+\resumeItemListStart
+  \resumeItem{Project: Insurance AI}{
+    \resumeNestedListStart
+      \item Image Preprocessing: Implemented advanced image processing algorithms with \textbf{OpenCV} to enhance document clarity.Developed and applied a \textbf{Non-Maximum Suppression (NMS)} algorithm to specifically mitigate text occlusion from document stamps, significantly improving the accuracy of downstream text detection models.
+      \item \textbf{OCR Engine Development:}
+        \resumeNestedListStart
+          \item \textbf{Text Detection:} Deployed and fine-tuned models from the \textbf{ICDAR benchmark (DBNET, EAST)} for robust text localization. Systematically evaluated model performance against benchmarks using \textbf{Recall, Precision, and F1-score}.
+          \item \textbf{Text Recognition:} Integrated \textbf{CRNN, SVTR, and TROCR} models for high-accuracy character transcription, leveraging open data from \textbf{ESUN.AI}. Validated model performance using \textbf{Character Error Rate (CER)}.
+          \item \textbf{Data Augmentation:} Utilized \textbf{Text Renderer} (an OCR generator tool) to programmatically generate a large-scale synthetic training dataset, enhancing model generalization and robustness against varied document fonts and formats.
+        \resumeNestedListEnd
+      \item Designed microservices deployed on Kubernetes , Using Grafana for model performance metrics and Kibana for log analysis
+      \item \textbf{Natural Language Processing (NLP) \& Document Intelligence:}
+        \resumeNestedListStart
+          \item Enhanced the LLM's OCR capabilities by integrating \textbf{layout-aware embedding} techniques with \textbf{LayoutXLM}.
+          \item Appliied TAIDE encoder model for Traditional Chinese text encoding, reducing character segmentation errors by 45\%,Optimized model performance through DPO and LoRA , achieving 3x faster inference while maintaining 92\% accuracy
+          \item Fine-tuned a \textbf{Llama 2.0} model for semantic recognition and entity extraction using advanced techniques including \textbf{Direct Preference Optimization (DPO)} and \textbf{Low-Rank Adaptation (LoRA)} from the \textbf{PEFT} library.
+          \item Optimized and deployed the fine-tuned model for efficient inference using \textbf{Llama.cpp}.
+        \resumeNestedListEnd
+    \resumeNestedListEnd
+  }
+\resumeItemListEnd
+
+\resumeSubheading
+  {Knowledge Engineering Lab, Fu Jen Catholic University}{New Taipei city, Taiwan}
+  {Research Assistant, Supervisor: \textbf{Hsu Jia-Lien}}{Jul 2022 - Sep 2024}
+\resumeItemListStart
+  \resumeItem{Form Understanding Project Certificate of Diagnosis }{Architected end-to-end medical document analysis system on ALTOS AI workstation using Kubernetes orchestration.
+  Integrated OCR algorithms and document understanding models in containerized microservices architecture. Earned project scholarship award for innovative system design with FUBON LIFE INSURANCE
+  (\href{https://www.fju.edu.tw/focusDetail.jsp?focusID=2285&focusClassID=3&fbclid=IwAR1U61iocx-gGDaxGOqLT-qEkD5vceZsGNmUt_Yr5AQPWskePqsnKosxVh0}{\textcolor{linkblue}{link}})}
+\resumeItemListEnd
+
+\resumeSubheading
+  {Jasslin Technology Co., Ltd.}{Taishan District, New Taipei City, Taiwan}
+  {Part-time Software Engineer}{Jun 2019 - Sep 2022}
+\resumeItemListStart
+
+  \resumeItem{Project: Fleet Management System}{
+    \resumeNestedListStart
+      \item Leveraged Apache Kafka to develop a high-throughput event-driven platform for real-time data feeds of 10,000+ devices.
+      \item Decoupled, scalable microservices for improved system flexibility and maintainability
+      \item Utilized Java Socket.IO for efficient bi-directional communication between server and devices.
+      \item Optimized database queries for handling large-scale inserts, achieving a 5x improvement in insert speeds, handling up to 10,000 inserts per second. Utilized SQL and NoSQL databases to efficiently handle different types of data
+    \resumeNestedListEnd
+  }
+
+  \resumeItem{Project: CRM System}{
+    Enhanced user interfaces and workflows tailored to company needs.
+  }
+
+  \resumeItem{Project: Qualification License Management}{
+    Developed a Quality License Management system with automated alerts for expiring licenses, integrated with the company's built-in CRM system.
+  }
+
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd

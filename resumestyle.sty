@@ -1,0 +1,89 @@
+%-------------------------------------------------------------------------------
+% resumestyle.sty -- page layout, colours and section macros for resume.tex
+%
+% Derived from the academic-resume-latex template by Ran Cheng, itself adapted
+% from Indu Dwivedi and Sourabh Bajaj. See LICENSE for terms.
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{resumestyle}[2026/07/26 Resume layout and section macros]
+
+% --- Packages -----------------------------------------------------------------
+\RequirePackage[empty]{fullpage}
+\RequirePackage{titlesec}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr}
+\RequirePackage[charter]{mathdesign}  % Bitstream Charter
+\RequirePackage{graphicx}
+\RequirePackage{multirow}
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}  % load last
+
+% --- Page furniture -----------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- Margins ------------------------------------------------------------------
+\addtolength{\oddsidemargin}{-0.50in}
+\addtolength{\evensidemargin}{-0.50in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+% --- Colours ------------------------------------------------------------------
+\definecolor{linkblue}{RGB}{111, 153, 222}
+\definecolor{titleblue}{RGB}{46, 116, 181}
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% --- Section headings ---------------------------------------------------------
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Tightened, coloured section heading. Use this rather than \section directly.
+\newcommand{\resumeSection}[1]{\vspace{-10pt}\section{\textcolor{titleblue}{#1}}}
+
+% --- Entry macros -------------------------------------------------------------
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemNoBullet}[2]{
+  \item[]\small{
+    \hspace{-9pt}\textbf{#1}{: #2 \vspace{-6pt}}
+  }
+}
+
+% Employer / location on the first line, role / dates on the second.
+% The ampersands here are tabular column separators -- they must NOT be escaped.
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item[]
+  \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
+      \hspace{-10pt}\textbf{#1} & #2 \\
+      \hspace{-10pt}\textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+% --- List macros --------------------------------------------------------------
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% Sub-bullets inside a \resumeItem body. Always use this pair rather than a bare
+% \begin{itemize}: hand-rolling the environment inside a macro argument is what
+% produced the mis-nested \end{itemize} that broke earlier revisions.
+\newcommand{\resumeNestedListStart}{\begin{itemize}}
+\newcommand{\resumeNestedListEnd}{\end{itemize}}

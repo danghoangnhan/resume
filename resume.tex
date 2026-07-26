@@ -1,309 +1,51 @@
-%-------------------------
-% Resume in Latex
-% Author : Ran Cheng
-% Adapted from: Indu dwivedi, Sourabh Bajaj
-% License : MIT
-%------------------------
-
+%-------------------------------------------------------------------------------
+% Daniel Tu -- resume
+%
+% Built by .github/workflows/build-resume.yml and published to
+%   https://danghoangnhan.github.io/resume/resume.pdf
+%
+% Layout and macros live in resumestyle.sty; content lives in sections/.
+% To change what the resume says, edit the section file -- not this one.
+%
+% Template: academic-resume-latex by Ran Cheng, adapted from Indu Dwivedi and
+% Sourabh Bajaj. Licensed for non-commercial use -- see LICENSE.
+%-------------------------------------------------------------------------------
 \documentclass[letterpaper,10pt]{article}
 
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage[pdftex, hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage[charter]{mathdesign} % Bitstream Charter
-% \usepackage{newpxtext,newpxmath} % Palatino
-\usepackage{longtable}
-\usepackage{graphicx}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{xcolor}
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\usepackage{resumestyle}
 
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.50in}
-\addtolength{\evensidemargin}{-0.50in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
-
-% Define colors
-\definecolor{linkblue}{RGB}{111, 153, 222}
-\definecolor{titleblue}{RGB}{46, 116, 181}
-\urlstyle{same}
-
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
-
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-6pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
-
-%-------------------------
-% Custom commands
-\newcommand{\resumeItem}[2]{
-  \item\small{
-    \textbf{#1}{: #2 \vspace{-2pt}}
-  }
+\hypersetup{
+  pdftitle={Daniel Tu - Resume},
+  pdfauthor={Daniel Tu},
+  pdfsubject={AI Engineer, Software Engineer}
 }
-
-\newcommand{\resumeItemNoBullet}[2]{
-  \item[]\small{
-    \hspace{-9pt}\textbf{#1}{: #2 \vspace{-6pt}}
-  }
-}
-
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-1pt}\item[]
-  \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
-      \hspace{-10pt}\textbf{#1} & #2 \\
-      \hspace{-10pt}\textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-5pt}
-}
-
-\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
-
-\renewcommand{\labelitemii}{$\circ$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
-
-% custom commands
-\newcommand{\shorterSection}[1]{\vspace{-10pt}\section{#1}}
-
-%-------------------------------------------
-%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{document}
 
-%----------HEADING-----------------
-% you can generate your own qr code here: https://www.the-qrcode-generator.com/
-% and convert the svg image you exported to pdf here: https://cloudconvert.com/svg-to-pdf
-% then import the graph in the title like this:
+\input{sections/header}
 
-\begin{table}[]
-\begin{tabular*}{\textwidth}{lc@{\extracolsep{\fill}}r}
-\begin{tabular}{l}
-\textbf{\huge \textcolor{titleblue}{Daniel Tu}} \\
-\\
-Ai Engineer, Software Engineer
-\end{tabular}  &  & \begin{tabular}{@{}rr@{}} \textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} Jingde Rd, Xinzhuang District, New Taipei City, Taiwan 242 & \multirow{3}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
-\includegraphics[width=0.017\linewidth]{imgs/email.pdf} danghoangnhan.1@gmail.com                     &                   \\
-\includegraphics[width=0.017\linewidth]{imgs/githubpage.pdf}\href{https://danghoangnhan.github.io}{danghoangnhan.github.io}                            &                   \\
-\includegraphics[width=0.017\linewidth]{imgs/phone.pdf} +886 906-276-967                                   &
-\end{tabular}  \\ 
-\end{tabular*}
-\end{table}
+\resumeSection{Education}
+\input{sections/education}
 
-\vspace*{-10mm}
+\resumeSection{Development Skill}
+\input{sections/skills}
 
+\resumeSection{Experience}
+\input{sections/experience}
 
-%-----------EDUCATION-----------------
-\shorterSection{\textcolor{titleblue}{Education}}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Fu Jen Catholic University}{New Taipei city, Taiwan}     {Master of Science in Computer Science}{Sep 2022 - Aug 2024}{
-        \resumeItemNoBullet{Thesis}{Enhancing Biomedical Document Analysis with Layout-Aware Multitask Model}
-        \resumeItemNoBullet{Field research}{Optical Character Recognition, Document Understanding, Large Language Model, Federated Learning,Object Detection}
+\resumeSection{Projects}
+\input{sections/projects}
 
-    }
-%     \resumeSubheading
-%       {Coursera}{Online}     {Honored Degrees \& Long-term Community Contributor}{Aug 2015 - Aug 2017}{
-%       \resumeItemNoBullet{Completed Courses}{Deep Learning Specialization (
-% DeepLearning.AI), TensorFlow: Advanced Techniques Specialization (UPenn), Machine Learning (Stanford)}
-%     }
-    \resumeSubheading
-      {Fu Jen Catholic University}{New Taipei city, Taiwan}     {Bachelor of Engineer, Software Engineering;}{Sep 2018 - Aug 2022}{
-%       \resumeItemNoBullet{Honors and Awards}{Outstanding Diploma thesis, National Aspiration Fellowship, Second Class Prize Fellowship, Social Activism Award, IBM
-% Outstanding Contribution Award, Microsoft Imagine Cup, FTC (First Tech Challenge, a Robot Competition Conference) Technician}
-    \resumeItemNoBullet{Thesis}{Reinforcement Learning Approach for the Restaurant Meal Delivery Problem using Value-inserting Method}
-    \resumeItemNoBullet{Field research}{Reinforcement learning}
-    }
-  \resumeSubHeadingListEnd
+\resumeSection{Open Source Contributions}
+\input{sections/opensource}
 
-%-----------ACADEMIC PROJECTS AND INTERNSHIPS-----------------
-\shorterSection{\textcolor{titleblue}{Development Skill}}
-  \resumeSubHeadingListStart
-    \small{
-    \item{\textbf{Programming Language}{: Python, C++, Java, Golang, Rust}
-    \hfill
-    \textbf{Devops}{: Docker, Jenkins, AWS CDK, GCP}}
-    \vspace{-8pt}
-    \item{\textbf{Backend}{: Django, Spring}
-    \hfill
-    \textbf{Mobile}{: Android Studio}}
-    \vspace{-8pt}
-    \item{\textbf{Database}{: Mysql, Mongodb, Redis, Kafka, RabbitMQ}
-    \hfill
-    \textbf{Version Control}{: Git}}
-    \vspace{-8pt}
-    \item{\textbf{Architect/Technique}{: SOLID Design Principles, Event-driven, Software design pattern, Multithreaded Programming}}
-    \vspace{-8pt}
-    \item{\textbf{Deeplearning}{: Cuda, TensorRT, ONNX, OpenCL, PyTorch, OpenCV, PaddlePaddle, TensorFlow}}
-    }
-    
-\resumeSubHeadingListEnd
+\resumeSection{Publications}
+\input{sections/publications}
 
-%-----------EXPERIENCE-----------------
-\shorterSection{\textcolor{titleblue}{Experience}}
-  \resumeSubHeadingListStart
+\resumeSection{Certificates}
+\input{sections/certificates}
 
-    \resumeSubheading
-  {ThinkTron Ltd.}{Siyuan St, Zhongzheng District, Taipei City, Taiwan}
-  {AI Software Engineer}{May 2025 - Present}
-  \resumeItemListStart
-    \resumeItem{Project: Satellite Imagery AI Automatic Identification System}
-            {
-            \begin{itemize}
-                \item Oriented Object Detection: Applied \textbf{YOLOv11-OBB} to perform \textbf{Oriented bounding boxes Object Detection} for accurately capturing the orientation of aircraft, ships, and vehicles.
-                \item Small Object Enhancement: Integrated \textbf{Slicing Aided Hyper Inference (SAHI)} to slice remote sensing images for parallel inference, significantly boosting the recall rate for small targets. Leveraged a Super-Resolution Model to enhance image detail, improving subsequent detection and annotation quality.
-                \item GPU Performance Optimization: Utilized \textbf{TensorRT} for FP16 quantization and layer fusion to achieve stable, low-latency inference.
-                \item AI Serving \& Deployment: Deployed models on NVIDIA Triton Inference Server, integrating with a FastAPI backend via gRPC/API. Applied \textbf{ Distributed Data Parallel (DDP)} across multiple GPUs to ensure efficient execution of large-scale inference tasks.
-                \item Experiment Management: Used \textbf{MLflow} to track model versions, hyperparameters, and performance metrics
-                \item Parallel Processing: Automated data workflows using \textbf{Apache Airflow}, employing dynamic task slicing to process large aerial images in parallel (Pansharpening, COG generation, PostGIS Raster writing, GeoServer publishing).
-                \item Resource Management: Integrated GDAL to build partition indexes at each stage and used Airflow's resource-aware scheduling to optimize CPU I/O allocation.
-            \end{itemize}
-            }
-    \resumeItemListEnd
-    
-\resumeSubheading
-  {FUBON LIFE INSURANCE CO., LTD.}{Neihu District, Taipei City, Taiwan}
-  {Data Scientist Intern}{Mar 2024 - Sep 2024}
-  \resumeItemListStart
-    \resumeItem{Project: Insurance AI}
-            {
-            \begin{itemize}
-                \item Image Preprocessing: Implemented advanced image processing algorithms with \textbf{OpenCV} to enhance document clarity.Developed and applied a \textbf{Non-Maximum Suppression (NMS)} algorithm to specifically mitigate text occlusion from document stamps, significantly improving the accuracy of downstream text detection models. 
-    \item \textbf{OCR Engine Development:}
-    \begin{itemize}
-        \item \textbf{Text Detection:} Deployed and fine-tuned models from the \textbf{ICDAR benchmark (DBNET, EAST)} for robust text localization. Systematically evaluated model performance against benchmarks using \textbf{Recall, Precision, and F1-score}.
-        \item \textbf{Text Recognition:} Integrated \textbf{CRNN, SVTR, and TROCR} models for high-accuracy character transcription, leveraging open data from \textbf{ESUN.AI}. Validated model performance using \textbf{Character Error Rate (CER)}.
-        \item \textbf{Data Augmentation:} Utilized \textbf{Text Renderer} (an OCR generator tool) to programmatically generate a large-scale synthetic training dataset, enhancing model generalization and robustness against varied document fonts and formats.
-    \end{itemize}
-                
-                \item Designed microservices deployed on Kubernetes , Using Grafana for model performance metrics and Kibana for log analysis
-            \end{itemize}
-            \item \textbf{Natural Language Processing (NLP) \& Document Intelligence:}
-    \begin{itemize}
-        \item Enhanced the LLM's OCR capabilities by integrating \textbf{layout-aware embedding} techniques with \textbf{LayoutXLM}.
-        \item Appliied TAIDE encoder model for Traditional Chinese text encoding, reducing character segmentation errors by 45\%,Optimized model performance through DPO and LoRA , achieving 3x faster inference while maintaining 92\% accuracy
-        \item Fine-tuned a \textbf{Llama 2.0} model for semantic recognition and entity extraction using advanced techniques including \textbf{Direct Preference Optimization (DPO)} and \textbf{Low-Rank Adaptation (LoRA)} from the \textbf{PEFT} library.
-        \item Optimized and deployed the fine-tuned model for efficient inference using \textbf{Llama.cpp}.
-        
-    \end{itemize}
-    }
-    \resumeItemListEnd
+\resumeSection{Languages}
+\input{sections/languages}
 
-\resumeSubheading
-{Knowledge Engineering Lab, Fu Jen Catholic University}{New Taipei city, Taiwan}
-{Research Assistant, Supervisor: \textbf{Hsu Jia-Lien}}{Jul 2022 - Sep 2024}
-\resumeItemListStart
-\resumeItem{Form Understanding Project Certificate of Diagnosis }
-{Architected end-to-end medical document analysis system on ALTOS AI workstation using Kubernetes orchestration.
-Integrated OCR algorithms and document understanding models in containerized microservices architecture. Earned project scholarship award for innovative system design with FUBON LIFE INSURANCE
-(\href{https://www.fju.edu.tw/focusDetail.jsp?focusID=2285&focusClassID=3&fbclid=IwAR1U61iocx-gGDaxGOqLT-qEkD5vceZsGNmUt_Yr5AQPWskePqsnKosxVh0}{\textcolor{linkblue}{link}})}
-\resumeItemListEnd
-
-
-\resumeSubheading
-{Jasslin Technology Co., Ltd.}{Taishan District, New Taipei City, Taiwan}
-{Part-time Software Engineer}{Jun 2019 - Sep 2022}
-\resumeItemListStart
-
-\resumeItem{Project: Fleet Management System}{
-  \begin{itemize}
-      \item Leveraged Apache Kafka to develop a high-throughput event-driven platform for real-time data feeds of 10,000+ devices.
-      \item Decoupled, scalable microservices for improved system flexibility and maintainability
-      \item Utilized Java Socket.IO for efficient bi-directional communication between server and devices.
-      \item Optimized database queries for handling large-scale inserts, achieving a 5x improvement in insert speeds, handling up to 10,000 inserts per second. Utilized SQL and NoSQL databases to efficiently handle different types of data
-  \end{itemize}
-}
-
-\resumeItem{Project: CRM System}{
-    Enhanced user interfaces and workflows tailored to company needs.
-}
-
-\resumeItem{Project: Qualification License Management}{
-    Developed a Quality License Management system with automated alerts for expiring licenses, integrated with the company's built-in CRM system.
-}
-
-\resumeItemListEnd
-
-%-----------PROJECTS/SKILLS-----------------
-\shorterSection{\textcolor{titleblue}{Projects}}
-  \resumeSubHeadingListStart
-    % \resumeSubItem{Visual SLAM}
-    %  {
-    %  Comprehensively \textbf{re-implemented} \href{https://github.com/rancheng/dso_understands}{\textcolor{linkblue}{DSO}} and annotated with exhaustive explains.
-    %  }
-    % \resumeSubItem{Deep Monocular Dense 3D Reconstruction}
-    %     {Dense 3D reconstruction with \textbf{monodepth2} initialized Visual Odometry, leveraging traditional photometric consistancy, occlusion discrepancy, and local geometrical-smooth assumptions to \textbf{optimize depth estimation} (\textbf{LM} method) and \textbf{register} 3D map point clouds.
-    %     }
-    % \resumeSubItem{Abstraction Augmented Deep RL}
-    %   {Abstract rgb image with Unet shaped network to digest image in latent representation, and learn from latent inputs, average convergence time increased 27.3\%, maximum reward (10M iterations) is 1.21 times than baseline model without abstraction augmentation, experiments conducted under self-collected dataset from AirSim simulator (\href{https://github.com/rancheng/AirSimProjects}{\textcolor{linkblue}{github}})
-    %   }
-    % \resumeSubItem{Forgetting Model for BP}
-    %   {Introduced forgetting model for back propagation as in gradient dynamic routine, inspired from forgetting curve, I invented forgetting factor to regulate delta weights updates (\href{https://rancheng.github.io/forgetting-model/}{\textcolor{linkblue}{math proof}})}
-    % \resumeSubItem{LOAM}{extended LOAM (LiDAR Odometry and Mapping) with co-visibility check, optimized with Ceres optimizer and asynchronous threading}
-    \resumeSubItem{CB-STM Test Implementation}{ Developed an Android mobile application for early Mild Cognitive Impairment (MCI) detection. Engineered real-time user behavior tracking system using SQLite database and implemented ML models optimized with ONNX for on-device predictions. Successfully processed 1000+ assessments and demonstrated at Taiwan HealthCare Expo 2023  (\href{https://www.chinatimes.com/realtimenews/20221205001624-260421?chdtv}{\textcolor{linkblue}{link}})}
-    \resumeSubHeadingListEnd
-
-%-----------OPEN SOURCE CONTRIBUTIONS-----------------
-\shorterSection{\textcolor{titleblue}{Open Source Contributions}}
-  \resumeSubHeadingListStart
-    \resumeSubItem{Pathway --- Real-Time Data Framework (\href{https://github.com/pathwaycom/pathway}{\textcolor{linkblue}{github}})}
-      {Contributed two \textbf{merged} native connectors to \href{https://pathway.com}{\textcolor{linkblue}{Pathway}}, an open-source Python/Rust streaming-data framework.
-      \begin{itemize}
-        \item \textbf{Microsoft SQL Server connector} (\texttt{pw.io.mssql}): pure-Rust TDS implementation via \texttt{tiberius} (no ODBC drivers); static-polling and Change Data Capture (CDC) streaming reads, snapshot / change-stream writes, and full SQL Server type mapping (\href{https://github.com/pathwaycom/pathway/pull/205}{\textcolor{linkblue}{PR \#205}}).
-        \item \textbf{RabbitMQ Streams connector} (\texttt{pw.io.rabbitmq}): native read/write on \texttt{rabbitmq-stream-client} with TLS, AMQP 1.0 message keys, and parallel readers; shipped an end-to-end RabbitMQ $\rightarrow$ Pathway $\rightarrow$ PostgreSQL ETL example (\href{https://github.com/pathwaycom/pathway/pull/207}{\textcolor{linkblue}{PR \#207}}).
-        \item Authored Python $\leftrightarrow$ Rust bindings (\textbf{PyO3}); the MSSQL connector now underpins further community contributions.
-      \end{itemize}
-      }
-  \resumeSubHeadingListEnd
-
-% -----------Addtional Experience & Achievements-----------------
-\shorterSection{\textcolor{titleblue}{Publications}}
-    \resumeSubHeadingListStart
-      \small
-        \item {Adaptive Model Transfers and Aggregations for Efficient Federated Learning in IoT Edge Systems with Non-IID Data,
-        Jenn-Wei Lin, Taewoon Kim, \textbf{Hung-Jen Tu},Po-Hsien Kuo,
-        \textbf{DSIT 2023},
-        \href{https://ieeexplore.ieee.org/document/10423980}{\textcolor{linkblue}{paper}}}
-    \resumeSubHeadingListEnd
-\shorterSection{\textcolor{titleblue}{Certificates }}
-  \resumeSubHeadingListStart
-  \small
-    \item { \href{https://camo.githubusercontent.com/6e76155581f50a3496bfdcab2008cdc3902839d189be6c39fc8412f69833d577/68747470733a2f2f6170692e61636372656469626c652e636f6d2f76312f66726f6e74656e642f63726564656e7469616c5f776562736974655f656d6265645f696d6167652f63657274696669636174652f3834313936363033}{\textcolor{linkblue}{TensorFlow Developer Certificate}}
-        , Google
-\hfill
-\vspace{-8pt}}
-    \item { \href{https://www.coursera.org/account/accomplishments/specialization/TNVAQWY9TTTA?}{\textcolor{linkblue}{Deep Learning Specialization}},
-        DeepLearning.AI
-    \hfill}
-    \resumeSubHeadingListEnd
-\shorterSection{\textcolor{titleblue}{Languages}}
-\resumeSubHeadingListStart
-\small{
-    \item{\textbf{Vietnamese}{: Native}}
-    \vspace{-8pt}
-    \item{\textbf{Chinese}{: Proficient}}
-    \vspace{-8pt}
-    \item{\textbf{English}{: Proficient}}
-}
-\resumeSubHeadingListEnd
-%-------------------------------------------
 \end{document}
