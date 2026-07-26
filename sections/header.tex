@@ -3,6 +3,8 @@
 % A plain tabular* rather than a table float -- a page header must not float,
 % and the float is what the old \vspace*{-10mm} was compensating for.
 %
+% The ampersands below are tabular column separators. Do not escape them.
+%
 % QR code: generate at https://www.the-qrcode-generator.com/ and convert the
 % exported SVG to PDF at https://cloudconvert.com/svg-to-pdf.
 \begin{tabular*}{\textwidth}{lc@{\extracolsep{\fill}}r}
@@ -10,9 +12,16 @@
 \textbf{\huge \textcolor{titleblue}{Daniel Tu}} \\
 \\
 AI Engineer, Software Engineer
-\end{tabular}  &  & \begin{tabular}{@{}rr@{}} \textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} Jingde Rd, Xinzhuang District, New Taipei City, Taiwan 242 & \multirow{3}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
-\includegraphics[width=0.017\linewidth]{imgs/email.pdf} danghoangnhan.1@gmail.com                     &                   \\
-\includegraphics[width=0.017\linewidth]{imgs/githubpage.pdf}\href{https://danghoangnhan.github.io}{danghoangnhan.github.io}                            &                   \\
-\includegraphics[width=0.017\linewidth]{imgs/phone.pdf} +886 906-276-967                                   &
-\end{tabular}  \\
+\end{tabular}
+&
+&
+% \tabcolsep is 0pt document-wide, so the gap before the QR column is
+% explicit. \multirow spans all four contact rows, which both centres the
+% code against them and clears the overfull \vbox it caused at three.
+\begin{tabular}{@{}r@{\hspace{9pt}}r@{}}
+\textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} Jingde Rd, Xinzhuang District, New Taipei City, Taiwan 242 & \multirow{4}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
+\includegraphics[width=0.017\linewidth]{imgs/email.pdf} danghoangnhan.1@gmail.com & \\
+\includegraphics[width=0.017\linewidth]{imgs/home.pdf} \href{https://danghoangnhan.github.io}{danghoangnhan.github.io} & \\
+\includegraphics[width=0.017\linewidth]{imgs/phone.pdf} +886 906-276-967 &
+\end{tabular} \\
 \end{tabular*}
