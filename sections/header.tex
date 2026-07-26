@@ -7,6 +7,8 @@
 %
 % QR code: generate at https://www.the-qrcode-generator.com/ and convert the
 % exported SVG to PDF at https://cloudconvert.com/svg-to-pdf.
+% QR target: https://github.com/danghoangnhan -- decoded from imgs/qrcode.png.
+% Recorded here because nothing else in the repo says where the code points.
 \begin{tabular*}{\textwidth}{lc@{\extracolsep{\fill}}r}
 % The bare \\ below is a zero-height spacer row, not a full line -- putting
 % text in it, or adding a fourth row here, makes this block genuinely taller
@@ -15,7 +17,7 @@
 \begin{tabular}{l}
 \textbf{\huge \textcolor{titleblue}{Daniel Tu}} \\
 \\
-AI Engineer, Software Engineer
+AI Software Engineer
 \end{tabular}
 &
 &
@@ -23,11 +25,19 @@ AI Engineer, Software Engineer
 % explicit. \multirow spans every contact row, which both centres the code
 % against them and clears the overfull \vbox it caused when it spanned
 % fewer -- it went 19.6pt at three rows, 7.6pt at four, and none at five.
+% The constraint is a floor, not a ceiling: six rows is also clear. If you
+% add or remove a row, change the \multirow count to match and re-read the log.
+%
+% The street address used to sit on the first row. It was dropped because this
+% PDF is served continuously at a public URL; city-level location is all an
+% employer acts on. The row it freed now carries the GitHub profile, which was
+% previously reachable only by scanning the QR code.
 \begin{tabular}{@{}r@{\hspace{9pt}}r@{}}
-\textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} Jingde Rd, Xinzhuang District, New Taipei City, Taiwan 242 & \multirow{5}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
+\textcolor{titleblue}{\includegraphics[width=0.017\linewidth]{imgs/location.pdf}} New Taipei City, Taiwan & \multirow{6}{*}{\includegraphics[width=0.096\linewidth]{imgs/qrcode.png}} \\
 \includegraphics[width=0.017\linewidth]{imgs/email.pdf} danghoangnhan.1@gmail.com & \\
-\includegraphics[width=0.017\linewidth]{imgs/home.pdf} \href{https://danghoangnhan.github.io}{danghoangnhan.github.io} & \\
+\includegraphics[width=0.017\linewidth]{imgs/home.pdf} \resumeLink{https://danghoangnhan.github.io}{danghoangnhan.github.io} & \\
+\includegraphics[width=0.017\linewidth]{imgs/git.pdf} \resumeLink{https://github.com/danghoangnhan}{github.com/danghoangnhan} & \\
 \includegraphics[width=0.017\linewidth]{imgs/phone.pdf} +886 906-276-967 & \\
-\href{https://orcid.org/0009-0005-8703-9956}{ORCID: 0009-0005-8703-9956} &
+\resumeLink{https://orcid.org/0009-0005-8703-9956}{ORCID: 0009-0005-8703-9956} &
 \end{tabular} \\
 \end{tabular*}
