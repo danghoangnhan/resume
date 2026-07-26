@@ -2,45 +2,71 @@ name: Build and Publish Resume PDF
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
+    paths:
+      - '**.tex'
+      - '**.sty'
+      - 'imgs/**'
+      - '.github/pages/**'
+      - '.github/workflows/build-resume.yml'
+  # Validate the LaTeX before it reaches main. Every build in this project's
+  # history failed at the compile step; this is the trigger that catches that
+  # on a branch instead of on the published site.
+  pull_request:
+    paths:
+      - '**.tex'
+      - '**.sty'
+      - 'imgs/**'
+      - '.github/pages/**'
+      - '.github/workflows/build-resume.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write   # attach the PDF to the rolling "latest" release
+  pages: write      # publish to GitHub Pages
+  id-token: write   # OIDC token required by deploy-pages
+
+# Don't let two runs on the same ref race each other to Pages.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Compile LaTeX to PDF
+      # Full TeX Live image -- it carries mathdesign/Charter, the one
+      # non-trivial dependency, so no package installation step is needed.
+      - name: Compile resume.tex
         uses: xu-cheng/latex-action@v3
         with:
           root_file: resume.tex
 
-      - name: Upload PDF as artifact
+      - name: Upload PDF as build artifact
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
           path: resume.pdf
+          if-no-files-found: error
 
-      - name: Prepare files for Pages
+      - name: Assemble Pages site
         run: |
-          mkdir public
-          cp resume.pdf public/
+          mkdir -p site
+          cp resume.pdf site/resume.pdf
+          cp .github/pages/index.html site/index.html
 
-      - name: Upload artifact for deployment
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: site
 
-  deploy:
+  # Everything below runs only on main, so pull requests validate the build
+  # without publishing anything.
+  deploy-pages:
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -49,3 +75,22 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  release:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download built PDF
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-pdf
+
+      - name: Update rolling "latest" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest resume
+          body: Built automatically from ${{ github.sha }}.
+          files: resume.pdf
+          make_latest: true
