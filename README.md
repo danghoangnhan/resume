@@ -1,54 +1,81 @@
-# Academic Resume LaTeX Template
+# Daniel Tu — Resume
 
-A clean, professional LaTeX template for academic resumes featuring QR codes, SVG graphics, and print-friendly formatting.
+[![Build and Publish Resume PDF](https://github.com/danghoangnhan/resume/actions/workflows/build-resume.yml/badge.svg)](https://github.com/danghoangnhan/resume/actions/workflows/build-resume.yml)
 
-## Features
+LaTeX source for my resume. Every push to `main` rebuilds the PDF and republishes it, so
+these links always serve the current version:
 
-- 📄 Clean and professional academic resume layout
-- 🎨 Customizable colors and styling
-- 📱 QR code integration for contact information
-- 🖼️ SVG graphics support
-- 🖨️ Print-friendly design
-- ⚡ Easy to customize and maintain
+- **Read it online** — <https://danghoangnhan.github.io/resume/>
+- **Direct PDF** — <https://danghoangnhan.github.io/resume/resume.pdf>
+- **Versioned download** — <https://github.com/danghoangnhan/resume/releases/latest/download/resume.pdf>
 
-## Preview
+## Layout
 
-<p align="center">
-  <img src="imgs/cv.png" alt="Academic Resume Preview" width="600" />
-</p>
-
-## Quick Start
-
-1. Clone this repository
-2. Edit `resume.tex` with your personal information
-3. Compile with LaTeX to generate your PDF resume
-
-## Customization Guide
-
-### Changing Colors
-
-Edit the color definitions in your LaTeX file:
-```latex
-\definecolor{linkblue}{RGB}{111, 153, 222}
+```
+resume.tex          driver — document class, PDF metadata, section order
+resumestyle.sty     packages, margins, colours, and every \resume* macro
+sections/           one file per section; this is where the content lives
+  header.tex          name, title, contact block, QR code
+  education.tex       skills.tex        experience.tex   projects.tex
+  opensource.tex      publications.tex  certificates.tex languages.tex
+imgs/               contact icons (PDF) and the QR code
+.github/pages/      index.html wrapper for the published site
 ```
 
-### Adding Icons
+To change what the resume *says*, edit a file in `sections/`. To change how it *looks*, edit
+`resumestyle.sty`. To add or reorder sections, edit `resume.tex`.
 
-1. Download SVG icons from [FreeIcons.io](https://freeicons.io)
-2. Customize icon colors by editing the SVG file:
-   - Open the SVG file in a text editor
-   - Find the path tag: `<path d="M228.065,125.587l-51...`
-   - Add your custom color: `<path style="fill:#AB7C94;" d="M228.065,125.587l-51...`
-3. Convert SVG files to PDF using [CloudConvert](https://cloudconvert.com/svg-to-pdf)
+## Building locally
 
-### Adding QR Codes
+There is no need to install TeX — this uses the same image CI does:
 
-Generate QR codes for contact information using [The QR Code Generator](https://www.the-qrcode-generator.com/) and follow the same SVG customization process above.
+```sh
+docker run --rm -v "$PWD:/w" -w /w ghcr.io/xu-cheng/texlive-full:latest \
+  latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
+```
 
-## Acknowledgments
+The build must exit 0. `latexmk` fails the CI step on any LaTeX error even when it still
+manages to emit a PDF, so a produced `resume.pdf` alone is not proof the build passed.
 
-This template is inspired by and references the excellent work from [academic-resume-latex](https://github.com/rancheng/academic-resume-latex) by rancheng.
+## Writing sections
+
+A few conventions worth knowing, all enforced by macros in `resumestyle.sty`:
+
+| Macro | Use |
+|---|---|
+| `\resumeSection{Title}` | Section heading. Already coloured — don't wrap it in `\textcolor`. |
+| `\resumeSubheading{org}{location}{role}{dates}` | Job or degree entry. Exactly **four** arguments. |
+| `\resumeItem{label}{body}` | A labelled bullet. |
+| `\resumeItemListStart` / `...End` | Bullets belonging to a `\resumeSubheading`. |
+| `\resumeNestedListStart` / `...End` | Sub-bullets **inside** a `\resumeItem` body. |
+
+Two traps, both of which have broken this build before:
+
+- **Use `\resumeNestedListStart`, never a bare `\begin{itemize}`, inside a macro argument.**
+  Opening a list outside a brace group and closing it inside one mis-nests the environment.
+- **`&` inside a `tabular`/`tabular*` is a column separator — do not escape it.** Only escape
+  `\&` when you literally want an ampersand in running text. A blanket escape pass once turned
+  every job entry into a single left-aligned line reading `Employer & Location`, and because it
+  still compiles cleanly, CI will not catch it for you.
+
+## Publishing
+
+`.github/workflows/build-resume.yml` compiles on every push to `main` and on every pull
+request. Pull requests build and upload the PDF as an artifact but publish nothing; only `main`
+deploys to Pages and updates the rolling `latest` release.
+
+GitHub Pages must be set to **Settings → Pages → Source: GitHub Actions** for the deploy job to
+succeed.
+
+## Credits
+
+Built on the [academic-resume-latex](https://github.com/rancheng/academic-resume-latex) template
+by [rancheng](https://github.com/rancheng), itself adapted from Indu Dwivedi and Sourabh Bajaj.
+
+Contact icons come from [FreeIcons.io](https://freeicons.io), recoloured by editing the SVG
+`fill` and converted with [CloudConvert](https://cloudconvert.com/svg-to-pdf). The QR code was
+generated at [the-qrcode-generator.com](https://www.the-qrcode-generator.com/).
 
 ## License
 
-This code is for non-commercial use. Please see the [LICENSE](LICENSE) file for complete terms and conditions.
+Non-commercial use only — see [LICENSE](LICENSE) for the full terms.
