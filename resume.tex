@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------
-% Daniel Tu -- resume
+% Hung-Jen (Daniel) Tu -- resume
 %
 % Built by .github/workflows/build-resume.yml and published to
 %   https://danghoangnhan.github.io/resume/resume.pdf
@@ -14,9 +14,13 @@
 
 \usepackage{resumestyle}
 
+% Kept ASCII on purpose. hyperref builds these into PDF strings, where CJK and
+% Vietnamese diacritics need explicit Unicode handling under pdfLaTeX and
+% otherwise emit "Token not allowed in a PDF string". The rendered document
+% carries the native spellings; the metadata does not need them.
 \hypersetup{
-  pdftitle={Daniel Tu - Resume},
-  pdfauthor={Daniel Tu},
+  pdftitle={Hung-Jen (Daniel) Tu - Resume},
+  pdfauthor={Hung-Jen (Daniel) Tu},
   pdfsubject={AI Software Engineer},
   pdflang={en-US}
 }
@@ -24,6 +28,9 @@
 \begin{document}
 
 \input{sections/header}
+
+% Deliberately not a \resumeSection -- see the comment in the file.
+\input{sections/names}
 
 \resumeSection{Education}
 \input{sections/education}

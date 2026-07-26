@@ -1,4 +1,6 @@
-# Daniel Tu — Resume
+# Hung-Jen (Daniel) Tu — Resume
+
+<sub>杜弘仁 · Đặng Hoàng Nhân · published as Hung-Jen Tu</sub>
 
 [![Build and Publish Resume PDF](https://github.com/danghoangnhan/resume/actions/workflows/build-resume.yml/badge.svg)](https://github.com/danghoangnhan/resume/actions/workflows/build-resume.yml)
 
