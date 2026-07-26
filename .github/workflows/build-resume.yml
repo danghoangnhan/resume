@@ -21,10 +21,12 @@ on:
       - '.github/workflows/build-resume.yml'
   workflow_dispatch:
 
+# Least privilege by default. `build` also runs on pull_request and executes
+# third-party actions plus an apt-get install, so it must not hold a token that
+# can push to the repo or deploy Pages. Each publishing job re-grants only what
+# it needs, and both are gated on main.
 permissions:
-  contents: write   # attach the PDF to the rolling "latest" release
-  pages: write      # publish to GitHub Pages
-  id-token: write   # OIDC token required by deploy-pages
+  contents: read
 
 # Don't let two runs on the same ref race each other to Pages.
 concurrency:
@@ -39,10 +41,35 @@ jobs:
 
       # Full TeX Live image -- it carries mathdesign/Charter, the one
       # non-trivial dependency, so no package installation step is needed.
+      #
+      # texlive_version is pinned deliberately. This layout is hand-tuned to
+      # exactly two pages; a hyphenation or metrics change in a newer TeX Live
+      # can spill it onto a third page, and latexmk would still exit 0, so CI
+      # would publish the broken layout without complaint.
       - name: Compile resume.tex
         uses: xu-cheng/latex-action@v3
         with:
           root_file: resume.tex
+          texlive_version: 2025
+
+      # latexmk exiting 0 only proves the LaTeX compiled. These assertions are
+      # what actually protect the published document: the page count and the
+      # box warnings are the two things that silently regress.
+      - name: Assert layout did not regress
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          pages=$(pdfinfo resume.pdf | awk '/^Pages:/ {print $2}')
+          if [ "$pages" != "2" ]; then
+            echo "::error::resume.pdf is $pages pages; expected 2"
+            exit 1
+          fi
+          if grep -q 'Overfull\|Underfull' resume.log; then
+            echo "::error::resume.log contains Overfull/Underfull boxes:"
+            grep -n 'Overfull\|Underfull' resume.log
+            exit 1
+          fi
+          echo "OK: 2 pages, no over/underfull boxes."
 
       - name: Upload PDF as build artifact
         uses: actions/upload-artifact@v4
@@ -58,13 +85,10 @@ jobs:
           cp .github/pages/index.html site/index.html
 
       # Preview image for the README, rendered from the PDF that was just
-      # built, so it can never drift from the actual resume. Installs
-      # poppler-utils rather than assuming the runner image ships pdftoppm.
+      # built, so it can never drift from the actual resume. poppler-utils is
+      # already installed by the layout assertion step above.
       - name: Render preview image
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq poppler-utils
-          pdftoppm -png -r 150 -f 1 -l 1 -singlefile resume.pdf site/preview
+        run: pdftoppm -png -r 150 -f 1 -l 1 -singlefile resume.pdf site/preview
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -77,6 +101,9 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write      # publish to GitHub Pages
+      id-token: write   # OIDC token required by deploy-pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -89,6 +116,8 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # attach the PDF to the rolling "latest" release
     steps:
       - name: Download built PDF
         uses: actions/download-artifact@v4
