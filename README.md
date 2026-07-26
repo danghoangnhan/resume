@@ -9,6 +9,15 @@ these links always serve the current version:
 - **Direct PDF** — <https://danghoangnhan.github.io/resume/resume.pdf>
 - **Versioned download** — <https://github.com/danghoangnhan/resume/releases/latest/download/resume.pdf>
 
+<p align="center">
+  <a href="https://danghoangnhan.github.io/resume/resume.pdf">
+    <img src="https://danghoangnhan.github.io/resume/preview.png" alt="First page of the resume" width="600" />
+  </a>
+</p>
+
+The preview above is rendered by CI from the PDF it just built, so it always matches what the
+links serve.
+
 ## Layout
 
 ```
