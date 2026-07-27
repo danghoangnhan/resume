@@ -1,0 +1,33 @@
+% One line of prose, deliberately without a section heading -- this is a reading
+% aid for anyone verifying the papers, the degrees or the identifiers, not a
+% claim about qualifications, and a heading would give it more weight than it
+% deserves.
+%
+% It sits on page 1 because that is where the mismatch first shows: the header
+% says Tu and the contact block immediately beside it says danghoangnhan. The
+% Publications lead-in used to carry this job alone and could only ever reach a
+% reader who had already been confused for a page.
+%
+% "also Daniel Du" is deliberately bare. 杜 is Tu in Wade-Giles, which Taiwanese
+% passports default to, and Du in Hanyu Pinyin; both are correct, and a reader
+% who lands on the ORCID or LinkedIn record only needs to know the two names are
+% one person, not which system produced which.
+%
+% Nothing here says "native Vietnamese speaker" -- the Languages section already
+% does, and this line had to lose something to stay on one line.
+%
+% ONE LINE. This is a hard constraint, not a style preference. Measured in the
+% CI image, at \small over the 7.5in block:
+%
+%   1 line  -> 2 pages, 3.96pt clear of the EDUCATION heading
+%   2 lines -> 3 pages, or 2 pages only by overlapping EDUCATION by 1.13pt
+%
+% There is no trailing \vspace value that makes two lines fit: the page count
+% flips to 2 only at -5pt, and the heading has already collided by then. CI
+% catches the 3-page case but NOT the overlap -- an overlap raises no box
+% warning and keeps the page count correct, so it would publish silently.
+% If you edit this sentence, re-measure rather than trusting it still fits.
+\vspace{-2pt}
+
+{\small\textit{Taiwan-born, Vietnam-raised, Taiwanese citizen. Vietnamese name
+\vnname\ --- hence \texttt{danghoangnhan}; also Daniel Du.}}

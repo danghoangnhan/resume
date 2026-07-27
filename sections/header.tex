@@ -14,8 +14,16 @@
 % text in it, or adding a fourth row here, makes this block genuinely taller
 % and drops the extra content below the contact column. The ORCID therefore
 % lives in the contact block on the right, with the other identifiers.
+% The name is "Hung-Jen (Daniel) Tu" rather than "Daniel Tu" so that the header
+% contains the publication byline verbatim -- a reader checking the Diagnostics
+% or DSIT papers matches on sight instead of having to be told. \cjkname rides
+% on this same row, which costs nothing vertically and is where a Taiwanese
+% reader comparing against an ID will look.
 \begin{tabular}{l}
-\textbf{\huge \textcolor{titleblue}{Daniel Tu}} \\
+% An explicit \hspace, not "\ ": an interword space here is set at the current
+% size, and this one sits outside the \huge group, so it renders at 10pt beside
+% a 20pt name and the two names visibly collide.
+\textbf{\huge \textcolor{titleblue}{Hung-Jen (Daniel) Tu}}\hspace{7pt}{\large\textcolor{titleblue}{\cjkname}} \\
 \\
 AI Software Engineer
 \end{tabular}
