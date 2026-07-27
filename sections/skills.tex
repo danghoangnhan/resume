@@ -8,26 +8,49 @@
 % extracts correctly.
 %
 % Rows are ordered so the specialism leads. Every tool named here is evidenced
-% in sections/experience.tex, sections/projects.tex or sections/opensource.tex.
+% in sections/experience.tex, sections/projects.tex or sections/opensource.tex,
+% with three exceptions -- GCP, Rancher and InfluxDB -- each flagged at its row.
+% Keep that list accurate: it is the difference between a skills block a reader
+% can spot-check and one they have to take on faith.
+%
+% The row gaps are -10pt rather than the -8pt this block used to carry. That is
+% load-bearing: at -8pt the tenth row pushes the document to three pages, which
+% CI rejects. Adding an eleventh row will need space found somewhere, not
+% another point shaved off here.
 \resumeSubHeadingListStart
   \small
   \item{\textbf{Deep Learning}{: PyTorch, TensorFlow, PaddlePaddle, ONNX, OpenCV, LoRA/PEFT, DPO}}
-  \vspace{-8pt}
+  \vspace{-10pt}
   \item{\textbf{Inference/Edge}{: TensorRT, CUDA, NVIDIA Triton, NVIDIA Jetson, llama.cpp}}
-  \vspace{-8pt}
+  \vspace{-10pt}
   \item{\textbf{MLOps}{: Kubeflow Pipelines, Kubeflow Trainer, KServe, Model Registry, MLflow, Knative}}
-  \vspace{-8pt}
+  \vspace{-10pt}
   \item{\textbf{Programming Language}{: Python, C++, Java, Go, Rust}}
-  \vspace{-8pt}
+  \vspace{-10pt}
   \item{\textbf{Backend}{: FastAPI, gRPC-Gateway, Spring}}
-  \vspace{-8pt}
-  % GCP is retained pending your call: every environment described in
-  % experience.tex is on-premise, so nothing in this document evidences it.
-  \item{\textbf{DevOps}{: Docker, Kubernetes, Helm, kubectl, GitLab CI/Runner, nginx, Envoy, GCP}}
-  \vspace{-8pt}
+  \vspace{-10pt}
+  % GCP and Rancher are both retained pending your call. Every environment
+  % described in experience.tex is on-premise, so nothing in this document
+  % evidences GCP; Rancher is named in no section at all. An interviewer who
+  % works down this row will ask about them, so either add a bullet that shows
+  % where they were used or drop them.
+  \item{\textbf{DevOps}{: Docker, Kubernetes, Helm, kubectl, Rancher, GitLab CI/Runner, nginx, Envoy, GCP}}
+  \vspace{-10pt}
   \item{\textbf{Security}{: Trivy, OWASP ZAP, Dependency-Track, Harbor, CycloneDX}}
-  \vspace{-8pt}
-  \item{\textbf{Data/Messaging}{: PostgreSQL, MongoDB, Redis, Kafka, RabbitMQ, Pathway, GDAL/PostGIS, GeoServer}}
-  \vspace{-8pt}
+  \vspace{-10pt}
+  % Split out of a single "Data/Messaging" row. That label made a reader work out
+  % which of eight names were stores and which were brokers, and it buried Kafka
+  % and RabbitMQ -- the event-driven work -- in the middle of a database list.
+  %
+  % Microsoft SQL Server is added here because opensource.tex evidences it: the
+  % merged pw.io.mssql connector is a pure-Rust TDS implementation. It was the
+  % one store named in this document that the skills block never claimed.
+  %
+  % InfluxDB is the exception on this row -- no section mentions it, same
+  % caveat as GCP and Rancher below.
+  \item{\textbf{Database}{: PostgreSQL, GDAL/PostGIS, Microsoft SQL Server, MongoDB, Redis, InfluxDB, GeoServer}}
+  \vspace{-10pt}
+  \item{\textbf{Message Queue/Streaming}{: Kafka, RabbitMQ, Pathway}}
+  \vspace{-10pt}
   \item{\textbf{Architecture}{: SOLID, Dependency Injection, Event-Driven Architecture, Design Patterns, Multithreaded Programming}}
 \resumeSubHeadingListEnd
