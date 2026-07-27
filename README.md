@@ -38,15 +38,27 @@ To change what the resume *says*, edit a file in `sections/`. To change how it *
 
 ## Building locally
 
-There is no need to install TeX — this uses the same image CI does:
+There is no need to install TeX. Use the image CI actually uses — `texlive-historic-alpine:2025`,
+which is what `latex-action` resolves `texlive_version: 2025` plus the default `os: alpine` to:
 
 ```sh
-docker run --rm -v "$PWD:/w" -w /w ghcr.io/xu-cheng/texlive-full:latest \
+docker run --rm -v "$PWD:/w" -w /w ghcr.io/xu-cheng/texlive-historic-alpine:2025 \
   latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
 ```
 
-On Windows Git Bash, prefix the command with `MSYS_NO_PATHCONV=1` and give the volume an absolute
-Windows path, or the shell rewrites `/w` into `W:/` and Docker rejects it.
+This used to say `texlive-full:latest`, which is a **different image family on a different TeX Live
+release** — it ships TeX Live 2026 and a fuller package set. A document that builds there can still
+fail in CI on a missing package, and hyphenation differences between releases can move a line and
+change the page count. If you change `texlive_version` in the workflow, change this command to match.
+
+On Windows Git Bash, prefix the command with `MSYS_NO_PATHCONV=1` **and** give the volume an absolute
+Windows path from `$(pwd -W)` — `$PWD` alone expands to an MSYS path like `/tmp/...` that Docker
+silently mounts as an empty directory, so the build appears to do nothing:
+
+```sh
+MSYS_NO_PATHCONV=1 docker run --rm -v "$(pwd -W):/w" -w /w ghcr.io/xu-cheng/texlive-historic-alpine:2025 \
+  latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode resume.tex
+```
 
 The build must exit 0. `latexmk` fails the CI step on any LaTeX error even when it still
 manages to emit a PDF, so a produced `resume.pdf` alone is not proof the build passed.
